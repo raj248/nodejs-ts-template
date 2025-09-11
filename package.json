@@ -21,11 +21,13 @@
   "author": "raj248",
   "license": "ISC",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "dotenv-flow": "^4.1.0",
     "express": "^5.1.0"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
     "@types/express": "^5.0.3",
     "@types/node": "^24.3.1",
     "nodemon": "^3.1.10",
