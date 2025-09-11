@@ -1,0 +1,32 @@
+{
+  "name": "nodejs-ts-template",
+  "version": "1.0.0",
+  "type": "commonjs",
+  "description": "A NodeJS Typescript Express Template to quickly start with a new project",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc --build",
+    "start": "node ./dist/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "unknown"
+  },
+  "keywords": [
+    "template"
+  ],
+  "author": "raj248",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.3",
+    "@types/node": "^24.3.1",
+    "nodemon": "^3.1.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2"
+  }
+}
