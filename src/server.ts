@@ -10,6 +10,13 @@ const app: Express = express();
 // credentials: true
 // }));
 
+// app.use(
+//   cors({
+//     origin: true, // or your frontend IP/domain
+//     credentials: true,
+//   })
+// );
+
 app.use(cors());
 
 app.use(express.json());
