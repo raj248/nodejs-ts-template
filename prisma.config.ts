@@ -1,6 +1,11 @@
 import dotenvFlow from "dotenv-flow";
 import path from "path";
-import { defineConfig } from "prisma/config";
+import { defineConfig, env } from "prisma/config";
+
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenvFlow.config({
   node_env: process.env.NODE_ENV || "development",
@@ -9,4 +14,12 @@ dotenvFlow.config({
 
 export default defineConfig({
   schema: path.join(__dirname, "src", "prisma", "schema.prisma"),
+  migrations: {
+    path: path.join(__dirname, "src", "prisma", "migrations"),
+    seed: `ts-node ./src/prisma/seed.ts`, // Or 'ts-node prisma/seed.ts' if using ts-node
+  },
+
+  datasource: {
+    url: env("DATABASE_URL"),
+  },
 });
