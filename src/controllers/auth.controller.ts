@@ -22,7 +22,7 @@ export const handleRefreshToken = async (
   // if (!user) throw new AppError("User no longer exists", 401);
 
   // 4. Generate a brand new short-lived access token
-  const newAccessToken = generateAccessToken({ userId: payload.userId });
+  const newAccessToken = generateAccessToken(payload);
 
   // 5. Return the new access token to the client
   res.status(200).json({
