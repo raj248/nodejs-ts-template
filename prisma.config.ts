@@ -2,11 +2,6 @@ import dotenvFlow from "dotenv-flow";
 import path from "path";
 import { defineConfig, env } from "prisma/config";
 
-import { fileURLToPath } from "url";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 dotenvFlow.config({
   node_env: process.env.NODE_ENV || "development",
   debug: process.env.NODE_ENV === "development",
