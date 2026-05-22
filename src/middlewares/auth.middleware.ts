@@ -1,6 +1,11 @@
 import { Request, Response, NextFunction } from "express";
-import { verifyAccessToken } from "../utils/crypto.utils";
-import { AppError } from "../utils/app-error.utils.js";
+import { TokenPayload, verifyAccessToken } from "../utils/crypto.utils";
+import { AppError } from "../utils/app-error.utils";
+
+// 1. Explicitly extend the Express Request type right here
+interface AuthenticatedRequest extends Request {
+  user?: TokenPayload;
+}
 
 export const requireAuth = (
   req: Request,
@@ -8,7 +13,8 @@ export const requireAuth = (
   next: NextFunction,
 ): void => {
   // 1. Get the Authorization header (e.g., "Bearer eyJhbGciOi...")
-  const authHeader = req.headers.authorization;
+  const authReq = req as AuthenticatedRequest;
+  const authHeader = authReq.headers.authorization;
 
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     throw new AppError("Authorization token missing or malformed", 401);
@@ -22,7 +28,7 @@ export const requireAuth = (
   const decodedPayload = verifyAccessToken(token);
 
   // 4. Attach the user payload (e.g., { userId }) directly to the request object
-  req.user = decodedPayload;
+  authReq.user = decodedPayload;
 
   // 5. Pass execution along to the next middleware or controller
   next();
